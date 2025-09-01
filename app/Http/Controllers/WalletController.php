@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Elliptic\EC;
 use kornrunner\Keccak;
-use Web3\Web3;
-use Web3\Providers\HttpProvider;
-use Web3\RequestManagers\HttpRequestManager;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class WalletController extends Controller
@@ -18,6 +16,7 @@ class WalletController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $balance = 0;
 
         if ($user->blockchain_address) {
 
@@ -30,34 +29,31 @@ class WalletController extends Controller
                 $rpcUrl = env('SONIC_TESTNET_RPC');
             }
 
-            $web3 = new Web3(new HttpProvider(new HttpRequestManager($rpcUrl, 10)));
+           try {
 
-            $balance = 0;
+                $response = Http::post($rpcUrl, [
+                    "jsonrpc" => "2.0",
+                    "method" => "eth_getBalance",
+                    "params" => [$user->blockchain_address, "latest"],
+                    "id" => 1
+                ]);
 
-            $web3->eth->getBalance($user->blockchain_address, function ($err, $data) use (&$balance) {
-                if ($err !== null) {
+              
+                if ($response->ok() && isset($response['result'])) {
+                    // resultado vem em hexadecimal (Wei)
+                    $weiHex = $response['result'];
+                    $weiDec = hexdec($weiHex);
 
-                    Log::error('Erro ao consultar saldo: ' . $err->getMessage());
-                    $balance = 0;
-                    return;
+                    // converte Wei → Sonic (18 casas decimais)
+                    $balance = bcdiv($weiDec, bcpow('10', '18'), 18);
                 }
 
-                // saldo vem em Wei (1 ETH = 10^18 Wei)
-                $balance = $data ? (int) $data->toString() : 0;
-            });
+                
 
-            /*
-                return response()->json([
-                    'address' => $user->blockchain_address,
-                    'balance_wei' => $balance,
-                    'balance_eth' => $balance > 0 ? $balance / 1e18 : 0,
-                    'network' => $network,
-                ]);
-            */
-        
-        }else{
-
-            $balance = 0;
+            } catch (\Exception $e) {
+                Log::error('Erro ao consultar saldo: ' . $e->getMessage());
+                $balance = 0;
+            }
 
         }
 
@@ -65,6 +61,7 @@ class WalletController extends Controller
             'user' => $user,
             'balance' => $balance
         ]);
+        
     }
 
     public function store(Request $request)
