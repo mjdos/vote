@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Elliptic\EC;
 use kornrunner\Keccak;
+use Web3\Web3;
+use Web3\Providers\HttpProvider;
+use Web3\RequestManagers\HttpRequestManager;
+
 
 class WalletController extends Controller
 {
@@ -13,8 +17,52 @@ class WalletController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        if ($user->blockchain_address) {
+
+            $network = env('SONIC_NETWORK', 'testnet');
+            
+            if($network == 'mainnet')
+            {
+                $rpcUrl = env('SONIC_MAINNET_RPC');
+            }else{
+                $rpcUrl = env('SONIC_TESTNET_RPC');
+            }
+
+            $web3 = new Web3(new HttpProvider(new HttpRequestManager($rpcUrl, 10)));
+
+            $balance = 0;
+
+            $web3->eth->getBalance($user->blockchain_address, function ($err, $data) use (&$balance) {
+                if ($err !== null) {
+                    // logar erro e retornar saldo 0
+                    \Log::error('Erro ao consultar saldo: ' . $err->getMessage());
+                    $balance = 0;
+                    return;
+                }
+
+                // saldo vem em Wei (1 ETH = 10^18 Wei)
+                $balance = $data ? (int) $data->toString() : 0;
+            });
+
+            /*
+                return response()->json([
+                    'address' => $user->blockchain_address,
+                    'balance_wei' => $balance,
+                    'balance_eth' => $balance > 0 ? $balance / 1e18 : 0,
+                    'network' => $network,
+                ]);
+            */
+        
+        }else{
+
+            $balance = 0;
+
+        }
+
         return view('wallet.index', [
             'user' => $user,
+            'balance' => $balance
         ]);
     }
 

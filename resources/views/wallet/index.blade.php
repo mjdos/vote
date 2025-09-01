@@ -35,14 +35,19 @@
                         </section>
                     @else
                         <section>
+
                             <header>
+
                                 <h2 class="text-lg font-medium text-gray-900">
                                     {{ __('Wallet Address') }}  
                                 </h2>
-
                                 <p class="mt-1 text-sm text-gray-600">
                                     {{ $user->blockchain_address }}
                                 </p>
+                                <p class="mt-1 text-sm text-gray-600">
+                                    Balance {{ $balance }}
+                                </p>
+                           
                             </header>
 
                             
