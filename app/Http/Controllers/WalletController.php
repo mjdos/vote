@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Elliptic\EC;
@@ -9,7 +10,7 @@ use kornrunner\Keccak;
 use Web3\Web3;
 use Web3\Providers\HttpProvider;
 use Web3\RequestManagers\HttpRequestManager;
-
+use Illuminate\Support\Facades\Log;
 
 class WalletController extends Controller
 {
@@ -35,8 +36,8 @@ class WalletController extends Controller
 
             $web3->eth->getBalance($user->blockchain_address, function ($err, $data) use (&$balance) {
                 if ($err !== null) {
-                    // logar erro e retornar saldo 0
-                    \Log::error('Erro ao consultar saldo: ' . $err->getMessage());
+
+                    Log::error('Erro ao consultar saldo: ' . $err->getMessage());
                     $balance = 0;
                     return;
                 }
@@ -68,6 +69,8 @@ class WalletController extends Controller
 
     public function store(Request $request)
     {
+
+        /** @var User $user */
         $user = Auth::user(); // pega usuário logado
 
         // gera par de chaves usando curva secp256k1
