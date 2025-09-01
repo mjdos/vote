@@ -12,3 +12,23 @@ $ php artisan key:generate
 $ composer require laravel/breeze --dev
 
 $ php artisan breeze:install blade
+
+### WEB3
+$ composer require web3p/web3.php
+
+
+### .ENV
+'locale' => 'pt_BR',            // idioma padrão
+'fallback_locale' => 'en',      // se faltar tradução em pt_BR, usa inglês
+'faker_locale' => 'pt_BR',      // opcional: seeds/factory em pt-BR
+'timezone' => 'America/Sao_Paulo', // opcional
+
+
+### Dependências para blockchain
+composer require web3p/ethereum-util
+composer require kornrunner/secp256k1
+composer require kornrunner/keccak
+
+
+### Ligar extensão
+ext-gmp
