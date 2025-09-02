@@ -36,7 +36,7 @@
             </div>
 
             {{-- Transferência --}}
-            <div class="card shadow-sm">
+            <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold">{{ __('Transfer Tokens') }}</h5>
                     <p class="text-muted small mb-4">
@@ -98,6 +98,69 @@
                     </form>
                 </div>
             </div>
+
+            {{-- Transações realizadas --}}
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    
+                <section>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title fw-semibold mb-0">{{ __('Transações Realizadas') }}</h5>
+                        <form action="{{ route('wallet.refresh') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-primary">
+                                🔄 {{ __('Atualizar') }}
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">{{ __('Destinatário') }}</th>
+                                    <th scope="col">{{ __('Quantidade (Sonic)') }}</th>
+                                    <th scope="col">{{ __('Tx Hash') }}</th>
+                                    <th scope="col">{{ __('Status') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($transactions as $tx)
+                                    <tr>
+                                        <td>{{ $tx->id }}</td>
+                                        <td class="text-truncate" style="max-width: 200px;">{{ $tx->to_address }}</td>
+                                        <td>{{ $tx->amount }}</td>
+                                        <td>
+                                            <a href="https://testnet.soniclabs.com/tx/{{ $tx->tx_hash }}" target="_blank">
+                                                {{ Str::limit($tx->tx_hash, 20) }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if($tx->status === 'pending')
+                                                <span class="badge bg-warning text-dark">Pendente</span>
+                                            @elseif($tx->status === 'success')
+                                                <span class="badge bg-success">Sucesso</span>
+                                            @else
+                                                <span class="badge bg-danger">Erro</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-muted text-center">Nenhuma transação encontrada</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+
+                </div>
+            </div>
+
+
 
         </div>
     </div>

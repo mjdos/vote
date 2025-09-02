@@ -22,6 +22,8 @@ class WalletController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $transactions = WalletTransaction::all();
+
         $balance = 0;
 
         if ($user->blockchain_address) {
@@ -76,7 +78,8 @@ class WalletController extends Controller
 
         return view('wallet.index', [
             'user' => $user,
-            'balance' => $balance
+            'balance' => $balance,
+            'transactions' => $transactions
         ]);
         
     }
@@ -307,6 +310,62 @@ class WalletController extends Controller
 
         return $data['result'];
 
+    }
+
+    public function refreshTransactions()
+    {
+        
+        $pending = WalletTransaction::where('status', 'pending')->get();
+
+        foreach ($pending as $tx) {
+            $status = $this->checkTransactionStatus($tx->tx_hash);
+
+            if ($status === 'success') {
+                $tx->status = 'success';
+            } elseif ($status === 'error') {
+                $tx->status = 'error';
+            }
+            $tx->save();
+        }
+
+        return redirect()->route('wallet')->with('success', 'Transações atualizadas!');
+    }
+
+    private function checkTransactionStatus(string $txHash): string
+    {
+        $network = env('SONIC_NETWORK', 'testnet');
+        
+        if($network == 'mainnet')
+        {
+            $rpcUrl = env('SONIC_MAINNET_RPC');
+        }else{
+            $rpcUrl = env('SONIC_TESTNET_RPC');
+        }
+
+        $client = new Client([
+            'verify' => false, // só para testes
+        ]);
+
+        $response = $client->post($rpcUrl, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept'       => 'application/json',
+            ],
+            'body' => json_encode([
+                "jsonrpc" => "2.0",
+                "method"  => "eth_getTransactionReceipt",
+                "params"  => [$txHash],
+                "id"      => 1,
+            ]),
+        ]);
+
+        $body = json_decode($response->getBody()->getContents(), true);
+
+        if (isset($body['result']) && $body['result'] !== null) {
+            return $body['result']['status'] === '0x1' ? 'success' : 'error';
+        }
+
+        return 'pending';
     }
 
 }

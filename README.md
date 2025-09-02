@@ -28,7 +28,7 @@ $ composer require web3p/web3.php
 composer require web3p/ethereum-util
 composer require kornrunner/secp256k1
 composer require kornrunner/keccak
-
+composer require web3p/ethereum-tx
 
 ### Ligar extensão
 ext-gmp

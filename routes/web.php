@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/wallet/store', [WalletController::class, 'store'])->name('wallet.store');
     Route::post('/wallet/transfer', [WalletController::class, 'transfer'])->name('wallet.transfer');
 
+    Route::post('/wallet/refresh', [WalletController::class, 'refreshTransactions'])->name('wallet.refresh');
+    
 });
 
 require __DIR__.'/auth.php';
