@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
     Route::post('/wallet/store', [WalletController::class, 'store'])->name('wallet.store');
+    Route::post('/wallet/transfer', [WalletController::class, 'transfer'])->name('wallet.transfer');
 
 });
 
