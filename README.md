@@ -37,3 +37,6 @@ ext-gmp
 SONIC_NETWORK=testnet
 SONIC_MAINNET_RPC=https://rpc.soniclabs.com
 SONIC_TESTNET_RPC=https://rpc.testnet.soniclabs.com
+
+### CUTOVER
+Lembrar de mudar na função buildTransaction o chainID.
