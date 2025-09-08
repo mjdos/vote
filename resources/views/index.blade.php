@@ -24,6 +24,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
 </head>
 
@@ -265,74 +266,65 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <div class="row g-4">
-        <!-- General Elections -->
-        <div class="col-md-6">
-          <div class="card p-4 shadow-sm h-100">
-            <div class="d-flex align-items-center mb-3">
-              <i class="bi bi-people-fill display-6 text-primary me-3"></i>
-              <h4 class="mb-0">General Elections 2026</h4>
+        <div class="row g-4">
+          <div class="col-md-12">
+            <div class="card p-4 shadow-sm h-100">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-people-fill display-6 text-primary me-3"></i>
+                <h4 class="mb-0">General Elections 2026 in Brazil</h4>
+              </div>
+              <p>Choose your candidate for the upcoming national elections.</p>
+              <ul class="list-unstyled">
+                <li class="d-flex align-items-start mb-4">
+                  <img src="assets/img/lula.png" alt="Lula" 
+                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
+                  <div>
+                    <div style="font-weight:bold; font-size:1.2rem;">Lula</div>
+                    <div class="text-muted mb-2">Workers' Party</div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"
+                      onclick="sendVote('General Elections 2026','Lula')">Vote Now</a>
+                  </div>
+                </li>
+
+                <li class="d-flex align-items-start mb-4">
+                  <img src="assets/img/tarcisio.png" alt="Tarcisio" 
+                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
+                  <div>
+                    <div style="font-weight:bold; font-size:1.2rem;">Tarcisio</div>
+                    <div class="text-muted mb-2">Republicans</div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"
+                      onclick="sendVote('General Elections 2026','Tarcisio')">Vote Now</a>
+                  </div>
+                </li>
+
+                <li class="d-flex align-items-start mb-4">
+                  <img src="assets/img/bolsonaro.png" alt="Bolsonaro" 
+                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
+                  <div>
+                    <div style="font-weight:bold; font-size:1.2rem;">Bolsonaro</div>
+                    <div class="text-muted mb-2">Liberal Party</div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"
+                      onclick="sendVote('General Elections 2026','Bolsonaro')">Vote Now</a>
+                  </div>
+                </li>
+
+                <li class="d-flex align-items-start mb-4">
+                  <img src="assets/img/alckmin.png" alt="Alckmin" 
+                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
+                  <div>
+                    <div style="font-weight:bold; font-size:1.2rem;">Alckmin</div>
+                    <div class="text-muted mb-2">Social Democrats</div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"
+                      onclick="sendVote('General Elections 2026','Alckmin')">Vote Now</a>
+                  </div>
+                </li>
+              </ul>
+
+            
             </div>
-            <p>Choose your candidate for the upcoming national elections.</p>
-            <ul>
-              <li>Candidate A – Reform Party</li>
-              <li>Candidate B – Unity Party</li>
-              <li>Candidate C – Future Alliance</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary mt-3">Vote Now</a>
           </div>
         </div>
 
-        <!-- Condominiums -->
-        <div class="col-md-6">
-          <div class="card p-4 shadow-sm h-100">
-            <div class="d-flex align-items-center mb-3">
-              <i class="bi bi-building display-6 text-success me-3"></i>
-              <h4 class="mb-0">Condominium Budget 2025</h4>
-            </div>
-            <p>Decide how to allocate the condominium funds for next year.</p>
-            <ul>
-              <li>Option A – Renovate swimming pool</li>
-              <li>Option B – Install solar panels</li>
-              <li>Option C – Improve security system</li>
-            </ul>
-            <a href="#" class="btn btn-outline-success mt-3">Vote Now</a>
-          </div>
-        </div>
-
-        <!-- Law Projects -->
-        <div class="col-md-6">
-          <div class="card p-4 shadow-sm h-100">
-            <div class="d-flex align-items-center mb-3">
-              <i class="bi bi-bank display-6 text-danger me-3"></i>
-              <h4 class="mb-0">Law Project #1024</h4>
-            </div>
-            <p>Should this new law proposal on renewable energy incentives be approved?</p>
-            <ul>
-              <li>Yes – Approve the law</li>
-              <li>No – Reject the law</li>
-            </ul>
-            <a href="#" class="btn btn-outline-danger mt-3">Vote Now</a>
-          </div>
-        </div>
-
-        <!-- Institution -->
-        <div class="col-md-6">
-          <div class="card p-4 shadow-sm h-100">
-            <div class="d-flex align-items-center mb-3">
-              <i class="bi bi-award display-6 text-warning me-3"></i>
-              <h4 class="mb-0">University Council 2025</h4>
-            </div>
-            <p>Vote for the next head of the Student Council at Global University.</p>
-            <ul>
-              <li>Alice Johnson – Faculty of Science</li>
-              <li>Michael Brown – Faculty of Law</li>
-              <li>Sophia Lee – Faculty of Business</li>
-            </ul>
-            <a href="#" class="btn btn-outline-warning mt-3">Vote Now</a>
-          </div>
-        </div>
-</div>
       </div>
 
     </section><!-- /Services Section -->
@@ -362,7 +354,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Your message is important to us, send questions, suggestions, tips, complaints, etc.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -371,29 +363,7 @@
           <div class="col-lg-5">
             <div class="info-box" data-aos="fade-up" data-aos-delay="200">
               <h3>Contact Info</h3>
-              <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p>
-
-              <div class="info-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box">
-                  <i class="bi bi-geo-alt"></i>
-                </div>
-                <div class="content">
-                  <h4>Our Location</h4>
-                  <p>A108 Adam Street</p>
-                  <p>New York, NY 535022</p>
-                </div>
-              </div>
-
-              <div class="info-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon-box">
-                  <i class="bi bi-telephone"></i>
-                </div>
-                <div class="content">
-                  <h4>Phone Number</h4>
-                  <p>+1 5589 55488 55</p>
-                  <p>+1 6678 254445 41</p>
-                </div>
-              </div>
+              <p>Send us a message.</p>
 
               <div class="info-item" data-aos="fade-up" data-aos-delay="500">
                 <div class="icon-box">
@@ -411,7 +381,7 @@
           <div class="col-lg-7">
             <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
               <h3>Get In Touch</h3>
-              <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p>
+              <p>Send us a message.</p>
 
               <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
@@ -455,83 +425,8 @@
   </main>
 
   <footer id="footer" class="footer">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">iLanding</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Hic solutasetp</h4>
-          <ul>
-            <li><a href="#">Molestiae accusamus iure</a></li>
-            <li><a href="#">Excepturi dignissimos</a></li>
-            <li><a href="#">Suscipit distinctio</a></li>
-            <li><a href="#">Dilecta</a></li>
-            <li><a href="#">Sit quas consectetur</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nobis illum</h4>
-          <ul>
-            <li><a href="#">Ipsam</a></li>
-            <li><a href="#">Laudantium dolorum</a></li>
-            <li><a href="#">Dinera</a></li>
-            <li><a href="#">Trodelas</a></li>
-            <li><a href="#">Flexo</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      <p> <strong class="px-1 sitename">Immutable Vote</strong> <span>All Rights Reserved</span></p>
     </div>
 
   </footer>
@@ -590,7 +485,7 @@
           balanceSpan.style.display = "inline";
          
           //balanceSpan.innerText = `${balanceEth} SONIC | ${shortAccount}`;
-          balanceSpan.innerHTML = `<img src="assets/img/sonic-small-logo.jpeg" alt="Sonic Logo" style="height:30px; margin-right:6px;"> ${balanceFormatted *100} SONIC`;
+          balanceSpan.innerHTML = `<img src="assets/img/sonic-small-logo.jpeg" alt="Sonic Logo" style="height:30px; margin-right:6px;"> ${balanceFormatted} SONIC`;
 
         } catch (err) {
           console.error("Wallet connection failed:", err);
@@ -603,6 +498,51 @@
 
     connectBtn.addEventListener("click", connectWallet);
   </script>
+
+  <script>
+
+    const contractAddress = "0xSEU_CONTRATO_AQUI";
+
+    // ABI mínima com a função submitVote
+    const contractABI = [
+      "function submitVote(string memory _projectName, string memory _voteFor) public payable"
+    ];
+
+    async function sendVote(projectName, candidate) {
+      if (typeof window.ethereum === "undefined") {
+        alert("MetaMask not detected!");
+        return;
+      }
+
+      try {
+        // Conecta ao provider (MetaMask)
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+
+        // Cria instância do contrato
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+        // Define o valor do voto (1 SONIC em Wei)
+        const voteValue = ethers.utils.parseEther("1");
+
+        // Envia a transação
+        const tx = await contract.submitVote(projectName, candidate, { value: voteValue });
+        console.log("Transaction sent:", tx.hash);
+
+        // Espera confirmar
+        const receipt = await tx.wait();
+        console.log("Vote confirmed:", receipt);
+        alert("Your vote has been successfully recorded on Sonic blockchain!");
+
+      } catch (err) {
+        console.error("Voting failed:", err);
+        alert("Voting failed: " + err.message);
+      }
+    }
+
+  </script>
+
 
 </body>
 
