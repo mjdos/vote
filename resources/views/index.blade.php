@@ -24,7 +24,8 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.2/dist/ethers.umd.min.js"></script>
+
 
 </head>
 
@@ -34,7 +35,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <h1 class="sitename">Immutable Vote</h1>
+        <h1 class="sitename"><img src="assets/img/logo.png" alt="Hero Image" class="img-fluid"> Immutable Vote</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -267,63 +268,67 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row g-4">
-          <div class="col-md-12">
-            <div class="card p-4 shadow-sm h-100">
-              <div class="d-flex align-items-center mb-3">
-                <i class="bi bi-people-fill display-6 text-primary me-3"></i>
-                <h4 class="mb-0">General Elections 2026 in Brazil</h4>
-              </div>
-              <p>Choose your candidate for the upcoming national elections.</p>
-              <ul class="list-unstyled">
-                <li class="d-flex align-items-start mb-4">
-                  <img src="assets/img/lula.png" alt="Lula" 
-                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
-                  <div>
-                    <div style="font-weight:bold; font-size:1.2rem;">Lula</div>
-                    <div class="text-muted mb-2">Workers' Party</div>
-                    <a href="#" class="btn btn-outline-primary btn-sm"
-                      onclick="sendVote('General Elections 2026','Lula')">Vote Now</a>
-                  </div>
-                </li>
+          <div class="col-md-3">
+            <div class="card p-4 shadow-sm h-100 text-center d-flex flex-column align-items-center justify-content-center">
+              <img src="assets/img/lula.png" alt="Lula" 
+                  style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-bottom:15px; ">
+              <div style="font-weight:bold; font-size:1.2rem;">Lula</div>
+              <div class="text-muted mb-2">Workers' Party</div>
+              <form action="{{ route('vote.submit') }}" method="POST">
+                @csrf
+                <input type="hidden" name="project_name" value="General Elections 2026">
+                <input type="hidden" name="vote_for" value="Lula">
+                <button class="btn btn-outline-primary btn-sm">Vote Now</button>
+              </form>
+            </div>
+          </div>
 
-                <li class="d-flex align-items-start mb-4">
-                  <img src="assets/img/tarcisio.png" alt="Tarcisio" 
-                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
-                  <div>
-                    <div style="font-weight:bold; font-size:1.2rem;">Tarcisio</div>
-                    <div class="text-muted mb-2">Republicans</div>
-                    <a href="#" class="btn btn-outline-primary btn-sm"
-                      onclick="sendVote('General Elections 2026','Tarcisio')">Vote Now</a>
-                  </div>
-                </li>
+          <div class="col-md-3">
+            <div class="card p-4 shadow-sm h-100 text-center d-flex flex-column align-items-center justify-content-center">
+              <img src="assets/img/tarcisio.png" alt="Tarcisio" 
+                  style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-bottom:15px;">
+              <div style="font-weight:bold; font-size:1.2rem;">Tarcisio</div>
+              <div class="text-muted mb-2">Republicans</div>
+              <form action="{{ route('vote.submit') }}" method="POST">
+                @csrf
+                <input type="hidden" name="project_name" value="General Elections 2026">
+                <input type="hidden" name="vote_for" value="Tarcisio">
+                <button class="btn btn-outline-primary btn-sm">Vote Now</button>
+              </form>
+            </div>
+          </div>
 
-                <li class="d-flex align-items-start mb-4">
-                  <img src="assets/img/bolsonaro.png" alt="Bolsonaro" 
-                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
-                  <div>
-                    <div style="font-weight:bold; font-size:1.2rem;">Bolsonaro</div>
-                    <div class="text-muted mb-2">Liberal Party</div>
-                    <a href="#" class="btn btn-outline-primary btn-sm"
-                      onclick="sendVote('General Elections 2026','Bolsonaro')">Vote Now</a>
-                  </div>
-                </li>
+          <div class="col-md-3">
+            <div class="card p-4 shadow-sm h-100 text-center d-flex flex-column align-items-center justify-content-center">
+              <img src="assets/img/bolsonaro.png" alt="Bolsonaro" 
+                  style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-bottom:15px;">
+              <div style="font-weight:bold; font-size:1.2rem;">Bolsonaro</div>
+              <div class="text-muted mb-2">Liberal Party</div>
+              <form action="{{ route('vote.submit') }}" method="POST">
+                @csrf
+                <input type="hidden" name="project_name" value="General Elections 2026">
+                <input type="hidden" name="vote_for" value="Bolsonaro">
+                <button class="btn btn-outline-primary btn-sm">Vote Now</button>
+              </form>
+            </div>
+          </div>
 
-                <li class="d-flex align-items-start mb-4">
-                  <img src="assets/img/alckmin.png" alt="Alckmin" 
-                      style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-right:15px;">
-                  <div>
-                    <div style="font-weight:bold; font-size:1.2rem;">Alckmin</div>
-                    <div class="text-muted mb-2">Social Democrats</div>
-                    <a href="#" class="btn btn-outline-primary btn-sm"
-                      onclick="sendVote('General Elections 2026','Alckmin')">Vote Now</a>
-                  </div>
-                </li>
-              </ul>
-
-            
+          <div class="col-md-3">
+            <div class="card p-4 shadow-sm h-100 text-center d-flex flex-column align-items-center justify-content-center">
+              <img src="assets/img/alckmin.png" alt="Alckmin" 
+                  style="width:70px; height:70px; object-fit:cover; border-radius:50%; margin-bottom:15px;">
+              <div style="font-weight:bold; font-size:1.2rem;">Alckmin</div>
+              <div class="text-muted mb-2">Social Democrats</div>
+              <form action="{{ route('vote.submit') }}" method="POST">
+                @csrf
+                <input type="hidden" name="project_name" value="General Elections 2026">
+                <input type="hidden" name="vote_for" value="Alckmin">
+                <button class="btn btn-outline-primary btn-sm">Vote Now</button>
+              </form>
             </div>
           </div>
         </div>
+
 
       </div>
 
@@ -426,7 +431,9 @@
 
   <footer id="footer" class="footer">
     <div class="container copyright text-center mt-4">
-      <p> <strong class="px-1 sitename">Immutable Vote</strong> <span>All Rights Reserved</span></p>
+      <p> <strong class="px-1 sitename">Immutable Vote</strong> <span>All Rights Reserved</span>
+    <button onclick="showVoteCostRobusto()">Ver Custo do Voto</button><pre id="out"></pre>
+  </p>
     </div>
 
   </footer>
@@ -499,48 +506,165 @@
     connectBtn.addEventListener("click", connectWallet);
   </script>
 
-  <script>
 
-    const contractAddress = "0xSEU_CONTRATO_AQUI";
+<script>
+  // ====== Config ======
+  const contractAddress = "0xb5022A7D7F5c2a7862b0C63FFfe01b2Ed6EAEfdf";
 
-    // ABI mínima com a função submitVote
-    const contractABI = [
-      "function submitVote(string memory _projectName, string memory _voteFor) public payable"
-    ];
+  // ABI mínima com submitVote e getters usados
+  const contractABI = [
+    {"inputs":[],"stateMutability":"nonpayable","type":"constructor"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"string","name":"projectName","type":"string"},{"indexed":false,"internalType":"string","name":"voteFor","type":"string"}],"name":"VoteSubmitted","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"admin","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Withdraw","type":"event"},
+    {"inputs":[],"name":"VOTE_COST","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[],"name":"getTotalVotes","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_projectName","type":"string"},{"internalType":"string","name":"_voteFor","type":"string"}],"name":"submitVote","outputs":[],"stateMutability":"payable","type":"function"},
+    {"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"votes","outputs":[{"internalType":"string","name":"projectName","type":"string"},{"internalType":"string","name":"voteFor","type":"string"},{"internalType":"address","name":"voter","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}
+  ];
 
-    async function sendVote(projectName, candidate) {
-      if (typeof window.ethereum === "undefined") {
-        alert("MetaMask not detected!");
+  // ====== Helpers (ethers v6) ======
+  async function getProvider() {
+    if (!window.ethereum) throw new Error("MetaMask não detectado.");
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Solicita contas
+    await provider.send("eth_requestAccounts", []);
+    return provider;
+  }
+
+  async function getContractWithSigner() {
+    const provider = await getProvider();
+    // Opcional: verificação de rede e bytecode (ajuda a diagnosticar rede errada)
+    const net = await provider.getNetwork();
+    console.log("chainId:", Number(net.chainId));
+
+    const code = await provider.getCode(contractAddress);
+    if (!code || code === "0x") {
+      throw new Error("Endereço não é contrato nesta rede atual. Verifique a rede no MetaMask.");
+    }
+
+    const signer = await provider.getSigner();
+    return new ethers.Contract(contractAddress, contractABI, signer);
+  }
+
+  function normalizeRpcError(err) {
+    // Extrai mensagens úteis (inclui casos MetaMask: -32603 / -32000 / missing trie node)
+    const parts = [
+      err?.info?.error?.message,
+      err?.error?.message,
+      err?.data?.message,
+      err?.message
+    ].filter(Boolean);
+    return parts[0] || "Falha ao processar a operação.";
+  }
+
+  // ====== UI: mostrar custo e enviar voto ======
+  // Mostra o VOTE_COST como texto em <p id="voteCost">
+  window.showVoteCost = async function showVoteCost() {
+    try {
+      const contract = await getContractWithSigner();
+      // Força leitura no estado mais recente (evita alguns RPCs problemáticos)
+      const cost = await contract.VOTE_COST({ blockTag: "latest" });
+      const costEth = ethers.formatEther(cost);
+      console.log("VOTE_COST (wei):", cost.toString());
+      const el = document.getElementById("voteCost");
+      if (el) el.textContent = `Custo do voto: ${costEth} ETH`;
+      else alert(`Custo do voto: ${costEth} ETH`);
+    } catch (err) {
+      console.error("Erro ao buscar VOTE_COST:", err);
+      alert("Erro ao buscar VOTE_COST: " + normalizeRpcError(err));
+    }
+  };
+
+  // Envia o voto chamando submitVote(projectName, candidate) com o value correto
+  window.sendVote = async function sendVote(projectName, candidate) {
+    try {
+      if (!projectName || !candidate) {
+        alert("Preencha projectName e candidate.");
         return;
       }
 
+      const contract = await getContractWithSigner();
+
+      // Lê o custo diretamente do contrato
+      const cost = await contract.VOTE_COST({ blockTag: "latest" });
+      console.log("Vote cost (wei):", cost.toString());
+
+      // Opcional: você pode definir gasLimit manualmente se o RPC não estimar bem:
+      // const tx = await contract.submitVote(projectName, candidate, { value: cost, gasLimit: 500000 });
+      const tx = await contract.submitVote(projectName, candidate, { value: cost });
+
+      console.log("Transaction sent:", tx.hash);
+      const receipt = await tx.wait(); // aguarda ser minerada
+      console.log("Vote confirmed:", receipt);
+      alert("Seu voto foi confirmado! Tx: " + (tx.hash || receipt.hash));
+
+    } catch (err) {
+      console.error("Voting failed:", err);
+      alert("Voting failed: " + normalizeRpcError(err));
+    }
+  };
+</script>
+  
+    <script>
+    const CONTRACT = "0xb5022A7D7F5c2a7862b0C63FFfe01b2Ed6EAEfdf";
+    const ABI = [{"inputs":[],"name":"VOTE_COST","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
+    // Coloque aqui um endpoint que você confia (da MESMA rede do contrato)
+    const READONLY_RPC = "https://rpc.testnet.soniclabs.com";
+
+    async function showVoteCostRobusto() {
+      const out = document.getElementById('out');
+      out.textContent = '...';
+
       try {
-        // Conecta ao provider (MetaMask)
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        // Detecta v5 ou v6
+        const isV5 = !!(window.ethers?.providers?.Web3Provider);
+        const isV6 = !!window.ethers?.BrowserProvider;
+
+        if (!window.ethereum) throw new Error('MetaMask não detectado');
+
+        const provider = isV5
+          ? new ethers.providers.Web3Provider(window.ethereum)
+          : new ethers.BrowserProvider(window.ethereum);
+
         await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
 
-        // Cria instância do contrato
-        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+        const net = await provider.getNetwork();
+        const chainId = Number(net.chainId);
+        const code = await provider.getCode(CONTRACT);
 
-        // Define o valor do voto (1 SONIC em Wei)
-        const voteValue = ethers.utils.parseEther("1");
+        out.textContent = `chainId: ${chainId}\nhas bytecode?: ${code && code !== '0x'}\n`;
 
-        // Envia a transação
-        const tx = await contract.submitVote(projectName, candidate, { value: voteValue });
-        console.log("Transaction sent:", tx.hash);
+        const contract = new ethers.Contract(CONTRACT, ABI, provider);
 
-        // Espera confirmar
-        const receipt = await tx.wait();
-        console.log("Vote confirmed:", receipt);
-        alert("Your vote has been successfully recorded on Sonic blockchain!");
+        // Tenta leitura normal
+        try {
+          const cost = await contract.VOTE_COST({ blockTag: "latest" });
+          const fmt = isV5 ? ethers.utils.formatEther(cost) : ethers.formatEther(cost);
+          out.textContent += `VOTE_COST (MetaMask RPC): ${fmt}\n`;
+          return;
+        } catch (e1) {
+          out.textContent += `Falha no MetaMask RPC: ${e1.message}\nTentando RPC readonly...\n`;
+        }
 
-      } catch (err) {
-        console.error("Voting failed:", err);
-        alert("Voting failed: " + err.message);
+        // Fallback: RPC readonly estável
+        const ro = isV5
+          ? new ethers.providers.JsonRpcProvider(READONLY_RPC)
+          : new ethers.JsonRpcProvider(READONLY_RPC);
+
+        const roContract = new ethers.Contract(CONTRACT, ABI, ro);
+        const cost2 = await roContract.VOTE_COST({ blockTag: "latest" });
+        const fmt2 = isV5 ? ethers.utils.formatEther(cost2) : ethers.formatEther(cost2);
+        out.textContent += `VOTE_COST (RPC readonly): ${fmt2}\n`;
+
+      } catch (e) {
+        out.textContent = 'Erro: ' + (e && e.message ? e.message : e);
       }
     }
-
+    
+ 
+    
   </script>
 
 

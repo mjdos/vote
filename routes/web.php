@@ -3,7 +3,8 @@
 use App\Http\Controllers\
 { 
     ProfileController,
-    WalletController
+    WalletController,
+    VoteController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,21 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/w', function () {
+    return view('welcome');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post('/vote', [VoteController::class, 'submitVoteBackend'])->name('vote.submit');
+
+Route::post('/vote_success', function () {
+    return view('sucesso_voto');
+})->name('vote_success');
+
 
 Route::middleware('auth')->group(function () {
 
@@ -27,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/wallet/refresh', [WalletController::class, 'refreshTransactions'])->name('wallet.refresh');
     
+    
+
 });
 
 require __DIR__.'/auth.php';
