@@ -21,11 +21,9 @@ Our platform makes it possible to design **secure and transparent voting project
 
 ## 📜 Smart Contract  
 
-This is the smart contract deployed on the **Sonic Testnet** for testing purposes:  
+This is the smart contract that was deployed on the Sonic Mainnet:
 
-**Contract Address:** `0xb5022A7D7F5c2a7862b0C63FFfe01b2Ed6EAEfdf`  
-
-It serves as a **prototype** for validating the functionalities of Immutable Vote, ensuring that the voting logic, transaction flow, and blockchain interactions work as expected before deployment on the mainnet.  
+**Contract Address:** `0xb5022a7d7f5c2a7862b0c63fffe01b2ed6eaefdf`  
 
 ---
 
