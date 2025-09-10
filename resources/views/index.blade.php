@@ -50,11 +50,14 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <!-- Botão Connect Wallet -->
+      <!-- Botão Connect Wallet 
       <button id="connectWalletBtn" class="btn-getstarted me-3">Connect Wallet</button>
+      -->
 
       <!-- Mostra saldo depois de conectar -->
-      <span id="walletBalance" class="fw-bold me-3" style="display:none; color: #000000"></span>
+      <span id="walletBalance" class="fw-bold me-3" style="color: #000000">
+        <img src="assets/img/sonic-small-logo.jpeg" alt="Sonic Logo" style="height:30px; margin-right:6px;"> {{ $balance }} SONIC
+      </span>
 
     </div>
   </header>

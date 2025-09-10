@@ -263,7 +263,7 @@ class WalletController extends Controller
             'value' => '0x' . dechex($amount),
             'gas' => '0x5208', // 21000 gas
             'gasPrice' => '0x' . dechex($gasPrice),
-            'chainId'  => 14601,
+            'chainId'  => 146,
         ]);
 
     }

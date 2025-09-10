@@ -7,10 +7,13 @@ use App\Http\Controllers\
     VoteController
 };
 use Illuminate\Support\Facades\Route;
-
+/*
 Route::get('/', function () {
     return view('index');
 });
+*/
+Route::get('/', [VoteController::class, 'index'])->name('vote.index');
+
 
 Route::get('/w', function () {
     return view('welcome');

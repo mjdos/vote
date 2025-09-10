@@ -77,9 +77,9 @@ class VoteController extends Controller
 
         }
 
-        return view('wallet.index', [
+        return view('index', [
             'user' => $user,
-            'balance' => $balance,
+            'balance' => round($balance, 5),
             'transactions' => $transactions
         ]);
         
@@ -186,7 +186,7 @@ class VoteController extends Controller
             'data'     => $data,                             // 0x...
             'gas'      => $this->toHex($gasLimitDec),
             'gasPrice' => $this->toHex($gasPriceWei),
-            'chainId'  => 14601,                             // Sonic testnet (ajuste se mainnet)
+            'chainId'  => 146,                             // Sonic mainnet
         ]);
     }
 
